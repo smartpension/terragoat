@@ -13,6 +13,10 @@ jobs:
         name: Checkout repo
         with:
           fetch-depth: 0
+      - uses: actions/checkout@v2
+        name: Checkout composite action repo
+        with:
+          repository: smartpension/checkov-to-datadog
       - name: Run yor action
         uses: bridgecrewio/yor-action@main
       - name: Commit tag changes
