@@ -19,6 +19,7 @@ jobs:
           repository: smartpension/checkov-to-datadog
           ref: refs/heads/main
           token: ${{ secrets.CHECKOV }}
+          path: ./.github/actions/
       - name: Run yor action
         uses: bridgecrewio/yor-action@main
       - name: Commit tag changes
@@ -28,7 +29,7 @@ jobs:
         with:
           python-version: 3.7
       - name: Scan & upload Checkov Results
-        uses: ./smartpension/checkov-to-datadog@v0.1.0
+        uses: ./.github/actions/checkov-to-datadog
         with:
           datadog_api_key: ${{ secrets.DATADOG_API_KEY }}
           service: ${ GITHUB_REPOSITORY }
