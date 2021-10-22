@@ -18,6 +18,7 @@ jobs:
         with:
           repository: smartpension/checkov-to-datadog
           ref: refs/heads/main
+          token: ${{ secrets.CHECKOV }}
       - name: Run yor action
         uses: bridgecrewio/yor-action@main
       - name: Commit tag changes
