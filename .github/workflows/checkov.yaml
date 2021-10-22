@@ -33,7 +33,7 @@ jobs:
         uses: ./.github/actions/checkov-to-datadog
         with:
           datadog_api_key: "THISISATEST" #${{ secrets.DATADOG_API_KEY }}
-          service: ${{ env.GITHUB_REPOSITORY }}
+          service: "REPO_THISISATEST" #${{ env.GITHUB_REPOSITORY }}
       - name: Test with Checkov
         id: checkov
         uses: bridgecrewio/checkov-action@master
