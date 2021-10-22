@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkov-to-datadog@v0.1.0
         with:
           datadog_api_key: ${{ secrets.DATADOG_API_KEY }}
-          service: ${{ GITHUB_REPOSITORY }}
+          service: ${ GITHUB_REPOSITORY }
       - name: Test with Checkov
         id: checkov
         uses: bridgecrewio/checkov-action@master
