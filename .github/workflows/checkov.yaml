@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: 3.7
       - name: Scan & upload Checkov Results
-        uses: actions/checkov-to-datadog@v0.1.0
+        uses: smartpension/checkov-to-datadog@v0.1.0
         with:
           datadog_api_key: ${{ secrets.DATADOG_API_KEY }}
           service: ${ GITHUB_REPOSITORY }
