@@ -20,6 +20,9 @@ jobs:
           ref: refs/heads/main
           token: ${{ secrets.CHECKOV }}
           path: ./.github/actions/
+      - name: Debug
+        run: |
+          ls .github/actions
       - name: Run yor action
         uses: bridgecrewio/yor-action@main
       - name: Commit tag changes
