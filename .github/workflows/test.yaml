@@ -1,0 +1,39 @@
+name: checkov
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout repo
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v2
+        name: Checkout composite action repo
+        with:
+          repository: smartpension/checkov-to-datadog
+          ref: refs/heads/main
+          token: ${{ secrets.CHECKOV }}
+          persist-credentials: false
+          path: ./.github/actions/checkov-to-datadog
+      - name: Run yor action
+        uses: bridgecrewio/yor-action@main
+      - name: Commit tag changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Scan & upload Checkov Results
+        uses: ./.github/actions/checkov-to-datadog
+        with:
+          datadog_api_key: "THISISATEST" #${{ secrets.DATADOG_API_KEY }}
+          service: "REPO_THISISATEST" #${{ env.GITHUB_REPOSITORY }}
+      - name: Test with Checkov
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
